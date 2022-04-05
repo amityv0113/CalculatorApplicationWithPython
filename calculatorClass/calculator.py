@@ -1,5 +1,5 @@
 from databaseClass import dbconnection
-
+from check import checkNum
 #Abstract class of calculator operation
 class OperationAbstract:
     def __add():
@@ -64,7 +64,20 @@ class SampleCalculator(OperationAbstract):
                 print("Result : ",temp_val[4])
                 print("----------------------")
             return -1
-        
+        elif (val==6):
+            num1 = str(input("Enter first number: ")) #taking 1st input from user
+            count1=0
+            count2=0
+            #loop for valid input 1
+            while(checkNum.check_num(num1,count1)==False):
+                num1=str(input("You have entered wrong input! number Please enter first number again : "))
+            num2 = str(input("Enter second number: ")) #taking 2nd input from user
+            #loop for valid input 2
+            while(checkNum.check_num(num2,count2)==False):
+                num2=str(input("You have entered wrong input! number Please enter first number again : " ))
+            self.__num1=float(num1)
+            self.__num2=float(num2)
+            return -1  
         else:
             return -1
     
@@ -75,6 +88,7 @@ class SampleCalculator(OperationAbstract):
         print("enter 3 for multiplication")
         print("enter 4 for divsion")
         print("enter 5 to look all operation")
+        print("enter 6 to set num1 and num2")
     # to start calculator application 
     def run(self):
         
@@ -82,11 +96,12 @@ class SampleCalculator(OperationAbstract):
         while flag:
             self.__operationToPerform()
             val=int(input())
-            while val not in [1,2,3,4,5,-1]:
+            while val not in [1,2,3,4,5,6,-1]:
                 val=int(input("please enter valid input ! :"))
             if val!=-1:
                 result =self.__operation(val)
-                print("result : ",result)
+                if (result!=-1):
+                    print("result : ",result)
                 print("enter -1 for exit !")
             
             
